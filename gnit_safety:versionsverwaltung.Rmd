@@ -2,6 +2,32 @@
 title: "Data_science_second_session_domanski_vincent"
 output: html_data_science_second_session
 ---
+```{r}
+library(tidyverse)
+```
+
+```{r}
+books <- BX_Books %>%
+  select(ISBN,`Book-Title`,`Book-Author`,`Year-Of-Publication`,Publisher)
+```
+
+```{r}
+(users <- BX_Users %>%
+  mutate(Age = as.numeric(Age)) %>%
+  drop_na(Age) %>%
+  arrange(desc(Age)) %>%
+  filter(Age < 100) 
+   )
+```
+
+```{r}
+(users %>%
+   mutate(country = str_remove(Location,".*,")) %>%
+   filter(country != "") %>%
+   arrange(desc(country))
+ )          
+```
+
 
 ```{r}
 lm(cars$dist ~ cars$speed)
